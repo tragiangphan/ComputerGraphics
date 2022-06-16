@@ -183,8 +183,15 @@ public:
 
 
 // ===== The Sun =====
-class sun : public Shape {
-	int xCenter, yCenter;
+class Moving : public Shape {
+public:
+	int xCenter;
+	int yCenter;
+
+	Moving(int xCenter, int yCenter) {
+		this->xCenter = xCenter;
+		this->yCenter = yCenter;
+	}
 
 	void move_up() {
 		yCenter++;
@@ -192,6 +199,14 @@ class sun : public Shape {
 
 	void move_down() {
 		yCenter--;
+	}
+
+	void move_right() {
+		xCenter++;
+	}
+
+	void move_left() {
+		xCenter--;
 	}
 };
 

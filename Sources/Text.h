@@ -250,7 +250,7 @@ public:
     static void draw_num(int x, int y, int n)
     {
         Pencil::erase_area(x, y);
-        char buffer[50];
+        char buffer[5];
         sprintf(buffer, "%d", n);
         outtextxy(x, y, buffer);
     }
