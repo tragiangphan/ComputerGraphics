@@ -3,19 +3,46 @@
 #include "ShapeList.h"
 #include "Pixel.h"
 #include "Text.h"
-#include "Point.h"
+#include "Pixel.h"
+
 using namespace std;
+
+class Point
+{
+public:
+	int x;
+	int y;
+	Point(int x, int y)
+	{
+		this->x = x;
+		this->y = y;
+	}
+};
+
+class Point3D
+{
+public:
+	int x;
+	int y;
+	int z;
+	Point3D(int x, int y, int z)
+	{
+		this->x = x;
+		this->y = y;
+		this->z = z;
+	}
+};
 
 int main()
 {
-	initwindow(1580, 820);
+	initwindow(1700, 810);
 	Painter::fill_background(WHITE);
-	Pencil::set_color(BLACK);
 	UserTable user_table;
 
 	//========================= The sun =========================
+	Shape theSun;
 	int x = 50, y = 10;
-	MovingShape theSun(x, 30 - y);
+	Moving *sun = new Moving(x, 30 - y);
 	theSun.add_circle(0 + x, 30 - y, 7);
 	theSun.add_line(0 + x, 40 - y, 0 + x, 45 - y);
 	theSun.add_line(-8 + x, 37 - y, -13 + x, 40 - y);
@@ -25,9 +52,10 @@ int main()
 	theSun.add_line(8 + x, 37 - y, 12 + x, 39 - y);
 	theSun.add_line(8 + x, 23 - y, 12 + x, 20 - y);
 	theSun.add_line(10 + x, 30 - y, 15 + x, 30 - y);
-	// user table draw in while loop
 
-	MovingShape hotAirBalloonShape(-55, 51);
+	//========================= Air balloon =========================
+	Shape hotAirBalloonShape;
+	Moving *airBal = new Moving(-55, 51);
 	hotAirBalloonShape.add_circle(-55, 51, 9);
 	hotAirBalloonShape.add_line(-62, 45, -60, 40);
 	hotAirBalloonShape.add_line(-48, 45, -50, 40);
@@ -35,8 +63,8 @@ int main()
 	hotAirBalloonShape.add_line(-60, 34, -50, 34);
 	hotAirBalloonShape.add_line(-60, 34, -60, 39);
 	hotAirBalloonShape.add_line(-50, 34, -50, 39);
-	// user table draw in the while loop
 
+	//========================= Mountain =========================
 	Shape mountain_shape;
 	mountain_shape.add_triangle(-105, 0, -80, 50, -55, 0);
 	mountain_shape.add_triangle(-55, 0, -30, 35, 0, 0);
@@ -50,9 +78,8 @@ int main()
 	mountain_shape.add_line(-35, 0, -20, 20);
 	mountain_shape.add_line(-25, 0, -14, 14);
 	mountain_shape.add_line(-15, 0, -8, 8);
-	// user table draw in the while loop
 
-	// ====================== water wheel =====================
+	//========================= Water wheel =========================
 	Shape waterWheel;
 	waterWheel.add_circle(-60, -15, 1);
 	waterWheel.add_circle(-60, -15, 7);
@@ -69,7 +96,6 @@ int main()
 	waterWheel.add_line(-63, -23, -66, -30);
 	waterWheel.add_line(-63, -26, -56, -26);
 	waterWheel.add_line(-64, -27, -55, -27);
-	user_table.draw_shape(waterWheel, MAGENTA);
 
 	//========================= Grass =========================
 	Shape grass;
@@ -77,11 +103,9 @@ int main()
 	grass.add_line(-20, -1, -60, -62);
 	grass.add_line(-60, -62, -105, -62);
 	grass.add_line(-105, -62, -105, -1);
-	user_table.draw_shape(grass, LIGHTGREEN);
-	user_table.draw_shape(grass.get_symmetry_oy(), LIGHTGREEN);
 
 	//========================= The house =========================
-	// the bone
+	// the house frame
 	Shape theHouse;
 	theHouse.add_rectangle(50, -20, 70, -40);
 	theHouse.add_triangle(50, -20, 59, -11, 70, -20);
@@ -92,8 +116,6 @@ int main()
 	houseFurnitures.add_line(52, -25, 58, -25);
 	houseFurnitures.add_rectangle(61, -30, 67, -40);
 	houseFurnitures.add_pixel(63, -35);
-	user_table.draw_shape(theHouse, RED);
-	user_table.draw_shape(houseFurnitures, LIGHTBLUE);
 
 	//========================= Trees =========================
 	// Trunks
@@ -107,16 +129,25 @@ int main()
 	leaves.add_circle(97, -32, 4);
 	leaves.add_circle(82, -35, 7);
 
-	user_table.draw_shape(leaves, GREEN);
-	user_table.draw_shape(trunks, BROWN);
+	user_table.draw_shape(&waterWheel, MAGENTA);
+
+	user_table.draw_shape(&grass, LIGHTGREEN);
+	user_table.draw_shape(grass.get_symmetry_oy(), LIGHTGREEN);
+
+	user_table.draw_shape(&theHouse, RED);
+	user_table.draw_shape(&houseFurnitures, LIGHTBLUE);
+
+	user_table.draw_shape(&leaves, GREEN);
+	user_table.draw_shape(&trunks, BROWN);
 	user_table.draw_shape(trunks.get_symmetry_oy(), BROWN);
 	user_table.draw_shape(leaves.get_symmetry_oy(), GREEN);
 
 	//===============================================================
 	//========================= Remote ctrl =========================
 	//===============================================================
-	
+
 	int font = 10;
+
 	Text ctrlPal("CONTROL PANEL");
 	ctrlPal.set_style(font, 3);
 	ctrlPal.draw_at(new Rectang(90, 3, 120, 3));
@@ -204,8 +235,11 @@ int main()
 	Rectang height3D(170, 318, 240, 345);
 	height3D.draw();
 
+	
+
 	int countFrame = 0;
 	int sunUpCount = -10;
+	Pixel mouse_cur_pos;
 	Pixel mouse_click_pixel;
 
 	while (true)
@@ -213,41 +247,54 @@ int main()
 		//===============================================================
 		//========================= 2D GRAPHICS =========================
 		//===============================================================
-		user_table.draw_shape(mountain_shape, DARKGRAY);
+
+		user_table.draw_shape(&mountain_shape, DARKGRAY);
 		user_table.draw_shape(mountain_shape.get_symmetry_oy(), DARKGRAY);
 
 		delay(30);
 
 		// clear objects
-		user_table.clear_shape(theSun);
-		user_table.clear_shape(hotAirBalloonShape);
+		user_table.clear_shape(&theSun);
+		user_table.clear_shape(&hotAirBalloonShape);
 
+		//===============================================================
+		// We code here : move and then draw an object
+
+		// move and then drawing Object1
 		if (countFrame % 5 == 0)
 		{
+
 			if (sunUpCount < 15)
 			{
 				theSun.move_up();
+				sun->move_up();
 			}
 			else
 			{
 				theSun.move_down();
+				sun->move_down();
 			}
+
 			sunUpCount++;
 		}
 
-		user_table.draw_shape(theSun, LIGHTRED);
+		user_table.draw_shape(&theSun, LIGHTRED);
 
+		// move and then drawing move and then drawing Object2
 		if (countFrame < 26)
 		{
 			hotAirBalloonShape.move_right();
+			airBal->move_right();
 		}
 		else
 		{
 			hotAirBalloonShape.move_left();
+			airBal->move_left();
 		}
 
-		user_table.draw_shape(hotAirBalloonShape, LIGHTMAGENTA);
+		user_table.draw_shape(&hotAirBalloonShape, LIGHTMAGENTA);
 
+		//===============================================================
 		if (countFrame == 50)
 		{
 			countFrame = 0;
@@ -263,14 +310,11 @@ int main()
 		//========================= 3D GRAPHICS =========================
 		//===============================================================
 
+		mouse_cur_pos.cur_mouse_pos();
 		mouse_click_pixel.mouse_click();
 
-		if (mouse_click_pixel.is_in(xRec3D))
+		if (mouse_click_pixel.is_in(&xRec3D) || mouse_click_pixel.is_in(&length3D))
 		{
-			int len0 = 380;
-			int x0 = 915;
-			int y0 = 414;
-			line(x0, y0, x0 - len0, y0 + len0);
 			user_table.clear_shape(theSun);
 			user_table.clear_shape(hotAirBalloonShape);
 			user_table.clear_shape(mountain_shape);
@@ -300,78 +344,109 @@ int main()
 			input.cin_at(length3D);
 			len = input.get_num();
 
+			if (len % 2 == 1)
+				len++;
+
 			input.cin_at(width3D);
 			wid = input.get_num();
 
 			input.cin_at(height3D);
 			hei = input.get_num();
 
-			vector<Point3D *> points_3d;
+		
+			vector<Point3D *> point_3d;
 
-			points_3d.push_back(new Point3D(beginx, beginy + wid, beginz));				// A
-			points_3d.push_back(new Point3D(beginx + len, beginy + wid, beginz));		// B
-			points_3d.push_back(new Point3D(beginx + len, beginy, beginz));				// C
-			points_3d.push_back(new Point3D(beginx, beginy, beginz));					// D
-			points_3d.push_back(new Point3D(beginx, beginy + wid, beginz + hei));		// E
-			points_3d.push_back(new Point3D(beginx + len, beginy + wid, beginz + hei)); // F
-			points_3d.push_back(new Point3D(beginx + len, beginy, beginz + hei));		// G
-			points_3d.push_back(new Point3D(beginx, beginy, beginz + hei));				// H
+			point_3d.push_back(new Point3D(beginx, beginy + wid, beginz));				   // A
+			point_3d.push_back(new Point3D(beginx + len, beginy + wid, beginz));		   // B
+			point_3d.push_back(new Point3D(beginx + len, beginy, beginz));				   // C
+			point_3d.push_back(new Point3D(beginx, beginy, beginz));						   // D
+			point_3d.push_back(new Point3D(beginx, beginy + wid, beginz + hei));		   // E
+			point_3d.push_back(new Point3D(beginx + len, beginy + wid, beginz + hei)); // F
+			point_3d.push_back(new Point3D(beginx + len, beginy, beginz + hei));		   // G
+			point_3d.push_back(new Point3D(beginx, beginy, beginz + hei));				   // H
 
-			vector<Point *> point_list; // 2d point list
+			vector<Point *> point_list;
 
-			point_list.push_back(get2Dfrom3D(points_3d[0])); // A
-			point_list.push_back(get2Dfrom3D(points_3d[1])); // B
-			point_list.push_back(get2Dfrom3D(points_3d[2])); // C
-			point_list.push_back(get2Dfrom3D(points_3d[3])); // D
-			point_list.push_back(get2Dfrom3D(points_3d[4])); // E
-			point_list.push_back(get2Dfrom3D(points_3d[5])); // F
-			point_list.push_back(get2Dfrom3D(points_3d[6])); // G
-			point_list.push_back(get2Dfrom3D(points_3d[7])); // H
+			point_list.push_back(new Point(point_3d[0]->x - point_3d[0]->y / sqrt(2), point_3d[0]->z - point_3d[0]->y / sqrt(2))); // A
+			point_list.push_back(new Point(point_3d[1]->x - point_3d[1]->y / sqrt(2), point_3d[1]->z - point_3d[1]->y / sqrt(2))); // B
+			point_list.push_back(new Point(point_3d[2]->x - point_3d[2]->y / sqrt(2), point_3d[2]->z - point_3d[2]->y / sqrt(2))); // C
+			point_list.push_back(new Point(point_3d[3]->x - point_3d[3]->y / sqrt(2), point_3d[3]->z - point_3d[3]->y / sqrt(2))); // D
+			point_list.push_back(new Point(point_3d[4]->x - point_3d[4]->y / sqrt(2), point_3d[4]->z - point_3d[4]->y / sqrt(2))); // E
+			point_list.push_back(new Point(point_3d[5]->x - point_3d[5]->y / sqrt(2), point_3d[5]->z - point_3d[5]->y / sqrt(2))); // F
+			point_list.push_back(new Point(point_3d[6]->x - point_3d[6]->y / sqrt(2), point_3d[6]->z - point_3d[6]->y / sqrt(2))); // G
+			point_list.push_back(new Point(point_3d[7]->x - point_3d[7]->y / sqrt(2), point_3d[7]->z - point_3d[7]->y / sqrt(2))); // H
 
 			Shape *shape = new Shape;
 
-			shape->add_line(point_list[0]->x, point_list[0]->y, point_list[1]->x, point_list[1]->y);		 // AB
-			shape->add_line_net_dut(point_list[2]->x, point_list[2]->y, point_list[3]->x, point_list[3]->y); // CD
-			shape->add_line_net_dut(point_list[3]->x, point_list[3]->y, point_list[0]->x, point_list[0]->y); // DA
-			shape->add_line(point_list[1]->x, point_list[1]->y, point_list[2]->x, point_list[2]->y);		 // BC
-			shape->add_line(point_list[4]->x, point_list[4]->y, point_list[5]->x, point_list[5]->y);		 // EF
-			shape->add_line(point_list[5]->x, point_list[5]->y, point_list[6]->x, point_list[6]->y);		 // FG
-			shape->add_line(point_list[6]->x, point_list[6]->y, point_list[7]->x, point_list[7]->y);		 // GH
-			shape->add_line(point_list[7]->x, point_list[7]->y, point_list[4]->x, point_list[4]->y);		 // HE
-			shape->add_line(point_list[0]->x, point_list[0]->y, point_list[4]->x, point_list[4]->y);		 // AE
-			shape->add_line(point_list[1]->x, point_list[1]->y, point_list[5]->x, point_list[5]->y);		 // BF
-			shape->add_line(point_list[2]->x, point_list[2]->y, point_list[6]->x, point_list[6]->y);		 // CG
-			shape->add_line_net_dut(point_list[3]->x, point_list[3]->y, point_list[7]->x, point_list[7]->y); // DH
+			shape->add_line(point_list[0]->x, point_list[0]->y, point_list[1]->x, point_list[1]->y);		 	// AB
+			shape->add_line_net_dut(point_list[2]->x, point_list[2]->y, point_list[3]->x, point_list[3]->y); 	// CD
+			shape->add_line_net_dut(point_list[3]->x, point_list[3]->y, point_list[0]->x, point_list[0]->y); 	// DA
+			shape->add_line(point_list[1]->x, point_list[1]->y, point_list[2]->x, point_list[2]->y);		 	// BC
+			shape->add_line(point_list[4]->x, point_list[4]->y, point_list[5]->x, point_list[5]->y); 			// EF
+			shape->add_line(point_list[5]->x, point_list[5]->y, point_list[6]->x, point_list[6]->y); 			// FG
+			shape->add_line(point_list[6]->x, point_list[6]->y, point_list[7]->x, point_list[7]->y);		 	// GH
+			shape->add_line(point_list[7]->x, point_list[7]->y, point_list[4]->x, point_list[4]->y);		 	// HE
+			shape->add_line(point_list[0]->x, point_list[0]->y, point_list[4]->x, point_list[4]->y);		 	// AE
+			shape->add_line(point_list[1]->x, point_list[1]->y, point_list[5]->x, point_list[5]->y); 			// BF
+			shape->add_line(point_list[2]->x, point_list[2]->y, point_list[6]->x, point_list[6]->y);		 	// CG
+			shape->add_line_net_dut(point_list[3]->x, point_list[3]->y, point_list[7]->x, point_list[7]->y);	// DH
+
+			// Text A("A: "), B("B: "), C("C: "), D("D: "), E("E: "), F("F: "), G("G: "), H("H: ");
+
+			// A.add("0,0,0");
+			// B.add(d);
+			// B.add(",0,0");
+			// C.add(d);
+			// C.add(",");
+			// C.add(r);
+			// C.add(",0");
+			// D.add("0,");
+			// D.add(r);
+			// D.add(",0");
+			// E.add("0,0,");
+			// E.add(c);
+			// F.add(d);
+			// F.add(",0,");
+			// F.add(c);
+			// G.add(d);
+			// G.add(",");
+			// G.add(r);
+			// G.add(",");
+			// G.add(c);
+			// H.add("0,");
+			// H.add(r);
+			// H.add(",");
+			// H.add(c);
+
+			// A.set_style(6, 1);
+			// B.set_style(6, 1);
+			// C.set_style(6, 1);
+			// D.set_style(6, 1);
+			// E.set_style(6, 1);
+			// F.set_style(6, 1);
+			// G.set_style(6, 1);
+			// H.set_style(6, 1);
+
+			// A.draw_at(new Rectang(600, 60, 650, 70));
+			// B.draw_at(new Rectang(900, 60, 950, 70));
+			// C.draw_at(new Rectang(1200, 60, 1250, 70));
+			// D.draw_at(new Rectang(1500, 60, 1550, 70));
+			// E.draw_at(new Rectang(1800, 60, 1850, 70));
+			// F.draw_at(new Rectang(2100, 60, 2150, 70));
+			// G.draw_at(new Rectang(2400, 60, 2450, 70));
+			// H.draw_at(new Rectang(2700, 60, 2750, 70));
 
 			user_table.draw_shape(shape, MAGENTA);
 
 			getch();
-			user_table.clear_shape(shape);
-			user_table.draw_shape(grass, LIGHTGREEN);
-			user_table.draw_shape(grass.get_symmetry_oy(), LIGHTGREEN);
-			user_table.draw_shape(waterWheel, MAGENTA);
-			user_table.draw_shape(theHouse, RED);
-			user_table.draw_shape(houseFurnitures, LIGHTBLUE);
-			user_table.draw_shape(trunks.get_symmetry_oy(), BROWN);
-			user_table.draw_shape(leaves.get_symmetry_oy(), GREEN);
-			Pencil::reDraw(xRec3D);
-			Pencil::reDraw(yRec3D);
-			Pencil::reDraw(zRec3D);
-			Pencil::reDraw(length3D);
-			Pencil::reDraw(width3D);
-			Pencil::reDraw(height3D);
-			int curColor = getcolor();
-			setcolor(WHITE);
-			line(x0, y0, x0 - len0, y0 + len0);
-			setcolor(curColor);
-			UserTable u;
 		}
 
 		//===== DATA X-Y =====
-		Text::draw_num(xSun.x1 + 10, xSun.y1 + 2, theSun.xCenter);
-		Text::draw_num(ySun.x1 + 10, ySun.y1 + 2, theSun.yCenter);
-		Text::draw_num(xAirBal.x1 + 10, xAirBal.y1 + 2, hotAirBalloonShape.xCenter);
-		Text::draw_num(yAirBal.x1 + 10, yAirBal.y1 + 2, hotAirBalloonShape.yCenter);
+		Text::SETSTYLE(font, 1);
+		Text::draw_num(xSun.x1 + 10, xSun.y1 + 4, sun->xCenter);
+		Text::draw_num(ySun.x1 + 10, ySun.y1 + 4, sun->yCenter);
+		Text::draw_num(xAirBal.x1 + 10, xAirBal.y1 + 4, airBal->xCenter);
+		Text::draw_num(yAirBal.x1 + 10, yAirBal.y1 + 4, airBal->yCenter);
 	}
 
 	getchar();

@@ -18,7 +18,7 @@ class Text : public FlashLight
         {
             outtextxy(x, y, "|");
             delay(50); // milisecond
-            outtextxy(x, y, " ");
+            outtextxy(x, y, "");
             delay(50);
         }
     }
