@@ -3,9 +3,9 @@
 
 #### PROJECT PREVIEW
 ##### 2D Coordination
-![3D Coordination](https://user-images.githubusercontent.com/85621338/174223171-452109d9-6514-421c-a46d-bb618b20aabf.png)
+![2D Coordination](https://user-images.githubusercontent.com/85621338/174241472-6bbbeaac-9078-4aaa-a5b1-a2a4b3970de5.png)
 ##### 3D Coordination
-![3D Coordination](https://user-images.githubusercontent.com/85621338/174222776-62c471ef-6131-4988-8f4b-8d6d79257af8.png)
+![3D Coordination](https://user-images.githubusercontent.com/85621338/174241579-a158bed9-6799-4967-b64e-7289b0441c27.png)
 ##### Project
 ![Project](https://user-images.githubusercontent.com/85621338/174240932-e7ae449f-570c-473c-b647-6e1fa67c228d.gif)
 
