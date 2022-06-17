@@ -3,7 +3,7 @@
 
 #### PROJECT PREVIEW
 ##### 2D Coordination
-![2D Coordination](https://user-images.githubusercontent.com/85621338/174222078-8ccd2d0d-8c1c-43d5-8cd1-743ba5196f77.png)
+![3D Coordination](https://user-images.githubusercontent.com/85621338/174223171-452109d9-6514-421c-a46d-bb618b20aabf.png)
 ##### 3D Coordination
 ![3D Coordination](https://user-images.githubusercontent.com/85621338/174222776-62c471ef-6131-4988-8f4b-8d6d79257af8.png)
 
