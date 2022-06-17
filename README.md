@@ -13,7 +13,7 @@
 3. Nguyen Thi Que, github: [github.com/NguyenThiQue](https://github.com/NguyenThiQue)
 
 ## Where we refer for project?
-#### Lecturers
+#### Lecturer
 MS.Dương Thanh Thao - Posts and Telecommunications Institute of Technology at Ho Chi Minh city
 #### Mentor
 Tran Minh Tuan 
