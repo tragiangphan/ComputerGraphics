@@ -19,7 +19,7 @@ MS.Dương Thanh Thao - Posts and Telecommunications Institute of Technology at 
 Tran Minh Tuan 
 - Github: [github.com/minhtuan29](https://github.com/minhtuan29)
 - Source reference: [github.com/minhtuan29/computer-graphics-cs465](https://github.com/minhtuan29/computer-graphics-cs465)
-- 
+
 ## What skill we learn from this project
 - Teamwork skills
 - Project implementation skills
