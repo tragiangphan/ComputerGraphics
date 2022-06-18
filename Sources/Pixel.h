@@ -3,7 +3,6 @@
 
 #include <winbgim.h>
 #include "Rectang.h"
-
 #include <iostream>
 class Pixel{
 	

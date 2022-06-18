@@ -2,7 +2,6 @@
 #define TABLE_H
 
 #include <winbgim.h>
-#include "Pencil.h"
 
 class Table{
 private:

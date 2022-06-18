@@ -2,7 +2,6 @@
 #define USERTABLE_H
 
 #define ROUND(a) (int)(a + 0.5)
-#define Round(a) (int)(a + 0.5)
 
 #include <vector>
 #include <math.h>
@@ -24,6 +23,7 @@ private:
 	static int MULTI;
 	static int PIXEL_SZ;
 
+
 	void put_to_table(int x, int y, int color)
 	{
 		Painter::set_color_will_fill(color);
@@ -31,23 +31,25 @@ private:
 			DTX + 1 + PIXEL_SZ + MULTI * x, DTY + 1 + PIXEL_SZ + MULTI * y);
 	}
 
-public:
-	static void make_change_ratote(int &user_x, int &user_y, double alpha)
-	{
 
+public:
+	
+	
+
+	
+	
+	static void make_change_ratote(int &user_x, int &user_y, float alpha)
+	{
 		int x = user_x;
 		int y = user_y;
-		user_x = x * COS(alpha) - y * SIN(alpha);
-		user_y = x * SIN(alpha) + y * COS(alpha);
-
-		if (user_x < 0 && abs(user_x) < 12)
-			user_x--;
-		if (user_x > 0 && abs(user_x) < 12)
-			user_x++;
+		user_x = ROUND ( (float)x * COS(alpha) - (float)y * SIN(alpha) );
+		user_y = ROUND ( (float)x * SIN(alpha) + (float)y * COS(alpha) );
 	}
+
 
 	UserTable()
 	{
+		int curColor = getcolor();
 		Pencil::set_color(LIGHTGRAY);
 
 		for (int i = 0; i < COL + 1; i++)
@@ -56,7 +58,7 @@ public:
 		for (int i = 0; i < ROW + 1; i++)
 			line(DTX, DTY + MULTI * i, DTX + MULTI * COL, DTY + MULTI * i);
 
-		Pencil::set_color(RED);
+		Pencil::set_color(curColor);
 
 		int HALF_MUL = MULTI / 2;
 
@@ -100,7 +102,7 @@ int UserTable::PIXEL_SZ = 5; // = 1,3,5,7,9,11
 int UserTable::MULTI = UserTable::PIXEL_SZ + 1;
 int UserTable::COL = 211; // 2k+1
 int UserTable::ROW = 125; // 2k+1
-int UserTable::DTX = 280;
+int UserTable::DTX = 260;
 int UserTable::DTY = 40;
 
 #endif
