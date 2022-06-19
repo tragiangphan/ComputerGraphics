@@ -10,9 +10,9 @@
 3. Nguyen Thi Que, github: [github.com/NguyenThiQue](https://github.com/NguyenThiQue)
 
 ## 🧑‍🏫 Lecturer and mentor
-#### Lecturer
+### Lecturer
 MS.Dương Thanh Thao - Posts and Telecommunications Institute of Technology at Ho Chi Minh city
-#### Mentor
+### Mentor
 Hoang Minh Tuan 
 - Github: [github.com/minhtuan29](https://github.com/minhtuan29)
 - Source reference: [github.com/minhtuan29/computer-graphics-cs465](https://github.com/minhtuan29/computer-graphics-cs465)
