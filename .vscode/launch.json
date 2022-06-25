@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "c:/Users/rivertea/OneDrive - ptg347/Code/C++/Computer_graphics",
-      "program": "c:/Users/rivertea/OneDrive - ptg347/Code/C++/Computer_graphics/build/Debug/outDebug",
+      "cwd": "c:/Users/rivertea/OneDrive - ptg347/Technique/Project/Computer_graphics",
+      "program": "c:/Users/rivertea/OneDrive - ptg347/Technique/Project/Computer_graphics/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

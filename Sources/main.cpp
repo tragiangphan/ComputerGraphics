@@ -162,7 +162,7 @@ int main()
 	user_table.draw_shape(red_shapeOfCar.get_symmetry_oy(), RED);
 	user_table.draw_shape(blue_shapeOfCar, BLUE);
 	
-	// ==========================================================================
+	// =========================================
 	
 
 	int font = 10;
@@ -206,7 +206,7 @@ int main()
 	Rectang yAirBal(175, 128, 240, 153);
 	yAirBal.draw();
 
-	//========================= 3D rectangle =========================
+	//========== 3D rectangle ==========
 	Text rec3D("3D RECTANGLE");
 	rec3D.set_style(font, 3);
 	rec3D.draw_at(new Rectang(70, 198, 90, 218));
@@ -253,9 +253,23 @@ int main()
 	Rectang height3D(170, 318, 240, 345);
 	height3D.draw();
 
+	Text cy3D("CYLINDER3D");
+	cy3D.set_style(font, 3);
+	cy3D.draw_at(new Rectang(200, 400, 90, 228));
 
+	Text rCy("R");
+	rCy.set_style(font, 2);
+	rCy.draw_at(new Rectang(100, 450, 90, 288));
+	Rectang rectang_cylinder3d_r(80, 450, 160, 480);
+	rectang_cylinder3d_r.draw();
 
-	//=========================WHILE LOOP DRAW FRAME====================================
+	Text hCy("H");
+	hCy.set_style(font, 2);
+	hCy.draw_at(new Rectang(100, 500, 90, 288));
+	Rectang rectang_cylinder3d_h(80, 500, 160, 530);
+	rectang_cylinder3d_h.draw();
+
+	//========== WHILE LOOP DRAW FRAME ==========
 
 	int countFrame = 0; // to setup moving some shape
 	int sunUpCount = -10; // to setup moving of the sun
@@ -274,9 +288,8 @@ int main()
 		// ======= We need to clear old frame, and then drawing new frame ===========
 		// ===== step 1: update shape, step 2: draw shape, step 3: delay, step 4: clear shape =====
 		// =====   OR   2->3->4->1  OR  3->4->1->2  OR   4->1->2->3
-		
-		
-		// ============= Rotate the water wheel ==============
+
+		// ========== Rotate the water wheel ===========
 		alpha += 10; // update alpha to rotate
 		Point* p1 = Shape::getRotatedPoint(-60,-8, waterWheelCenterX, waterWheelCenterY, alpha);
 		Point* p2 = Shape::getRotatedPoint(-60,-22, waterWheelCenterX, waterWheelCenterY, alpha);
@@ -293,9 +306,8 @@ int main()
 		sRotate.add_line(p2->x, p2->y, p4->x, p4->y);
 		user_table.draw_shape(waterWheel, BLUE); // the water wheel that we want it to be back of the fan, we draw it first
 		user_table.draw_shape(sRotate, CYAN); // Then we draw the fan. After updating rotated fan, we draw it
-		//===============================================================
-		
-		
+		//=========================================================================
+
 		// ============ 2->3->4->1 : draw,  delay, clear, update ==================
 		
 		
@@ -304,13 +316,8 @@ int main()
 		user_table.draw_shape(mountain_shape, DARKGRAY);
 		user_table.draw_shape(mountain_shape.get_symmetry_oy(), DARKGRAY);
 	
-	
-	
-	
 		// after drawing all thing need to change move, we delay current frame
 		delay(1);
-		
-		
 		
 		// after delaying, we clear shapes and then update
 		
@@ -343,9 +350,6 @@ int main()
 		}
 		// update and then draw : step 4 to step 1
 		user_table.draw_shape(hotAirBalloonShape, LIGHTMAGENTA);
-		
-		
-
 	
 		if (countFrame == 80){
 			countFrame = 0;
@@ -355,10 +359,10 @@ int main()
 			sunUpCount = 0;
 		}
 
-
-
 		//========================= 3D GRAPHICS =========================
 		mouse_click_pixel.mouse_click(); // get event of none click or click. If click, get x,y position of the click
+
+		//========== 3D Rectangle ==========
 		if (mouse_click_pixel.is_in(xRec3D) ) 
 		{
 			int len0 = 380;
@@ -449,7 +453,7 @@ int main()
 			shape->add_line(point_list[2]->x, point_list[2]->y, point_list[6]->x, point_list[6]->y);		 	// CG
 			shape->add_line_net_dut(point_list[3]->x, point_list[3]->y, point_list[7]->x, point_list[7]->y);	// DH
 
-			user_table.draw_shape(shape, MAGENTA);
+			user_table.draw_shape(shape, CYAN);
 
 			getch(); // = get character = the while loop inside, get the key of keyboard user type
 			user_table.clear_shape(shape);
@@ -475,7 +479,69 @@ int main()
 			setcolor(curColor);
 			UserTable u;
 		}
-		//=====================================================
+
+		//========== 3D Cylinder ==========
+		if (mouse_click_pixel.is_in(rectang_cylinder3d_r))
+		{
+			int len0 = 380;
+			int x0 = 895;
+			int y0 = 414;
+			line(x0, y0, x0 - len0, y0 + len0);
+			user_table.clear_shape(theSun);
+			user_table.clear_shape(hotAirBalloonShape);
+			user_table.clear_shape(mountain_shape);
+			user_table.clear_shape(waterWheel);
+			user_table.clear_shape(grass);
+			user_table.clear_shape(theHouse);
+			user_table.clear_shape(houseFurnitures);
+			user_table.clear_shape(trunks);
+			user_table.clear_shape(leaves);
+			user_table.clear_shape(black_shapeOfCar);
+			user_table.clear_shape(mountain_shape.get_symmetry_oy());
+			user_table.clear_shape(grass.get_symmetry_oy());
+			user_table.clear_shape(trunks.get_symmetry_oy());
+			user_table.clear_shape(leaves.get_symmetry_oy());
+
+			user_table.clear_shape(gray_shapeOfCar);
+			user_table.clear_shape(gray_shapeOfCar.get_symmetry_oy());
+			user_table.clear_shape(black_shapeOfCar);
+			user_table.clear_shape(black_shapeOfCar.get_symmetry_oy());
+			user_table.clear_shape(cyan_shapeOfCar);
+			user_table.clear_shape(cyan_shapeOfCar.get_symmetry_oy());
+			user_table.clear_shape(red_shapeOfCar);
+			user_table.clear_shape(red_shapeOfCar.get_symmetry_oy());
+			user_table.clear_shape(blue_shapeOfCar);
+
+			int r, h;
+
+			Text input;
+
+			input.cin_at(rectang_cylinder3d_r);
+			r = input.get_num();
+
+			input.cin_at(rectang_cylinder3d_h);
+			h = input.get_num();
+
+			vector<Point *> point_list;
+
+			point_list.push_back(new Point(0, 0));
+			point_list.push_back(new Point(0, h));
+			point_list.push_back(new Point(-r, 0));
+			point_list.push_back(new Point(-r, h));
+			point_list.push_back(new Point(r, 0));
+			point_list.push_back(new Point(r, h));
+
+			Shape *shape = new Shape;
+
+			shape->add_elip(point_list[0]->x, point_list[0]->y, r, r / 2);
+			shape->add_elip(point_list[1]->x, point_list[1]->y, r, r / 2);
+			shape->add_line(point_list[2]->x, point_list[2]->y, point_list[3]->x, point_list[3]->y);
+			shape->add_line(point_list[4]->x, point_list[4]->y, point_list[5]->x, point_list[5]->y);
+
+			user_table.draw_shape(shape, CYAN);
+			getch();
+			user_table.clear_shape(shape);
+		}
 
 		// ======= write x,y position to frame ===
 		Pencil::set_color(GREEN);

@@ -29,12 +29,12 @@ public:
 };
 
 
-const float F_CABINET = 1.5f;
+const float F_CABINET = 0.5;
 
 Point* get2Dfrom3D(Point3D*  p){
 	// cavalier with cabinet
-	float a = (float)p->x - (float)p->y / sqrt(2) / F_CABINET;
-	float b = (float)p->z - (float)p->y / sqrt(2) / F_CABINET;
+	float a = (float)p->x - (float)p->y / sqrt(2) * F_CABINET;
+	float b = (float)p->z - (float)p->y / sqrt(2) * F_CABINET;
 	int ra = round(a);
 	int rb = round(b);
 	return new Point(ra, rb);
