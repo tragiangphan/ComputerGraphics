@@ -490,6 +490,11 @@ int main()
 			Pencil::reDraw(length3D);
 			Pencil::reDraw(width3D);
 			Pencil::reDraw(height3D);
+			Pencil::reDraw(rectang_cylinder3d_x);
+			Pencil::reDraw(rectang_cylinder3d_y);
+			Pencil::reDraw(rectang_cylinder3d_z);
+			Pencil::reDraw(rectang_cylinder3d_r);
+			Pencil::reDraw(rectang_cylinder3d_h);
 			int curColor = getcolor();
 			setcolor(WHITE);
 			line(x0, y0, x0 - len0, y0 + len0);

@@ -53,10 +53,6 @@ public:
 	int xCenter;
 	int yCenter;
 	
-	MovingShape(){
-		
-	}
-	
 	MovingShape(int xc, int yc){
 		this->xCenter = xc;
 		this->yCenter = yc;

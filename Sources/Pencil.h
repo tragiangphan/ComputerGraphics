@@ -34,7 +34,7 @@ public:
 	
 	static void erase_area(int x, int y)
 	{
-		outtextxy(x, y, "    ");
+		outtextxy(x, y, "     ");
 	}
 	
 	static void reDraw(Rectang& r){
