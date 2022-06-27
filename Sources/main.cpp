@@ -4,12 +4,9 @@
 #include "Pixel.h"
 #include "Text.h"
 #include "Point.h"
+#include <math.h>
 
 using namespace std;
-
-
-
-
 
 int main()
 {
@@ -42,7 +39,7 @@ int main()
 	hotAirBalloonShape.add_line(-60, 34, -60, 39);
 	hotAirBalloonShape.add_line(-50, 34, -50, 39);
 	// user table draw in the while loop
-	
+
 	// ================= mountain =========================
 	Shape mountain_shape;
 	mountain_shape.add_triangle(-105, 0, -80, 50, -55, 0);
@@ -59,7 +56,6 @@ int main()
 	mountain_shape.add_line(-15, 0, -8, 8);
 	// user table draw in the while loop
 
-
 	// ==================== water wheel =====================
 	Shape waterWheel;
 	waterWheel.add_circle(-60, -15, 1);
@@ -70,7 +66,7 @@ int main()
 	waterWheel.add_line(-60, -16, -60, -21);
 	waterWheel.add_line(-59, -16, -54, -18);
 	waterWheel.add_line(-59, -14, -54, -12);
-	//waterWheel.add_circle(-60, -15, 8);
+	// waterWheel.add_circle(-60, -15, 8);
 	waterWheel.add_line(-57, -23, -54, -30);
 	waterWheel.add_line(-56, -23, -53, -30);
 	waterWheel.add_line(-64, -23, -67, -30);
@@ -78,7 +74,7 @@ int main()
 	waterWheel.add_line(-63, -26, -56, -26);
 	waterWheel.add_line(-64, -27, -55, -27);
 	user_table.draw_shape(waterWheel, LIGHTCYAN);
-	
+
 	//========================= Grass =========================
 	Shape grass;
 	// line
@@ -86,9 +82,8 @@ int main()
 	grass.add_line(-60, -62, -105, -62);
 	grass.add_line(-105, -62, -105, -1);
 	user_table.draw_shape(grass, LIGHTGREEN);
-	user_table.draw_shape(grass.get_symmetry_oy(), LIGHTGREEN); 
-	
-	
+	user_table.draw_shape(grass.get_symmetry_oy(), LIGHTGREEN);
+
 	//=================== The house ======================
 	// the bone
 	Shape theHouse;
@@ -115,42 +110,42 @@ int main()
 	leaves.add_circle(91, -20, 9);
 	leaves.add_circle(97, -32, 4);
 	leaves.add_circle(82, -35, 7);
-	
+
 	user_table.draw_shape(leaves, GREEN);
 	user_table.draw_shape(trunks, BROWN);
 	user_table.draw_shape(trunks.get_symmetry_oy(), BROWN);
-	user_table.draw_shape(leaves.get_symmetry_oy(), GREEN);	
-	
+	user_table.draw_shape(leaves.get_symmetry_oy(), GREEN);
+
 	//===================== Car ==========================
 	int xCar_ct = 0, yCar_ct = -16;
-	
-	//draw shape of car w gray_color
+
+	// draw shape of car w gray_color
 	Shape gray_shapeOfCar;
-	gray_shapeOfCar.add_line(xCar_ct, yCar_ct+6,xCar_ct-6,yCar_ct+6);
-	gray_shapeOfCar.add_line(xCar_ct-6, yCar_ct+6,xCar_ct-12,yCar_ct-6);
-	gray_shapeOfCar.add_line(xCar_ct-12, yCar_ct-6,xCar_ct-12,yCar_ct-8);
-	gray_shapeOfCar.add_line(xCar_ct-12, yCar_ct-8,xCar_ct-4,yCar_ct-8);
-	gray_shapeOfCar.add_line(xCar_ct-8, yCar_ct-4,xCar_ct-6,yCar_ct-6);
-	gray_shapeOfCar.add_line(xCar_ct-6,yCar_ct-6,xCar_ct,yCar_ct-6);
-	//draw shape of car w black_color
+	gray_shapeOfCar.add_line(xCar_ct, yCar_ct + 6, xCar_ct - 6, yCar_ct + 6);
+	gray_shapeOfCar.add_line(xCar_ct - 6, yCar_ct + 6, xCar_ct - 12, yCar_ct - 6);
+	gray_shapeOfCar.add_line(xCar_ct - 12, yCar_ct - 6, xCar_ct - 12, yCar_ct - 8);
+	gray_shapeOfCar.add_line(xCar_ct - 12, yCar_ct - 8, xCar_ct - 4, yCar_ct - 8);
+	gray_shapeOfCar.add_line(xCar_ct - 8, yCar_ct - 4, xCar_ct - 6, yCar_ct - 6);
+	gray_shapeOfCar.add_line(xCar_ct - 6, yCar_ct - 6, xCar_ct, yCar_ct - 6);
+	// draw shape of car w black_color
 	Shape black_shapeOfCar;
-	black_shapeOfCar.add_trapezoid(xCar_ct-4, yCar_ct+4,xCar_ct-6,yCar_ct+1);
-	black_shapeOfCar.add_line(xCar_ct-10, yCar_ct-11,-xCar_ct+10,yCar_ct-11);
-	black_shapeOfCar.add_elip(xCar_ct-11, yCar_ct-11, xCar_ct-10-(xCar_ct-11), yCar_ct-8-(yCar_ct-11));
-	//draw shape of car w cyan_color
+	black_shapeOfCar.add_trapezoid(xCar_ct - 4, yCar_ct + 4, xCar_ct - 6, yCar_ct + 1);
+	black_shapeOfCar.add_line(xCar_ct - 10, yCar_ct - 11, -xCar_ct + 10, yCar_ct - 11);
+	black_shapeOfCar.add_elip(xCar_ct - 11, yCar_ct - 11, xCar_ct - 10 - (xCar_ct - 11), yCar_ct - 8 - (yCar_ct - 11));
+	// draw shape of car w cyan_color
 	Shape cyan_shapeOfCar;
-	cyan_shapeOfCar.add_line(xCar_ct-8-xCar_ct/2, yCar_ct+1,xCar_ct-10,yCar_ct+1);
-	cyan_shapeOfCar.add_line(xCar_ct-10,yCar_ct+1,xCar_ct-11,yCar_ct);
-	cyan_shapeOfCar.add_line(xCar_ct-11,yCar_ct,xCar_ct-11,yCar_ct+1);
-	cyan_shapeOfCar.add_line(xCar_ct-11,yCar_ct+1,xCar_ct-8-xCar_ct*3/4,yCar_ct+1);
-	//draw shape of car w red_color
+	cyan_shapeOfCar.add_line(xCar_ct - 8 - xCar_ct / 2, yCar_ct + 1, xCar_ct - 10, yCar_ct + 1);
+	cyan_shapeOfCar.add_line(xCar_ct - 10, yCar_ct + 1, xCar_ct - 11, yCar_ct);
+	cyan_shapeOfCar.add_line(xCar_ct - 11, yCar_ct, xCar_ct - 11, yCar_ct + 1);
+	cyan_shapeOfCar.add_line(xCar_ct - 11, yCar_ct + 1, xCar_ct - 8 - xCar_ct * 3 / 4, yCar_ct + 1);
+	// draw shape of car w red_color
 	Shape red_shapeOfCar;
-	red_shapeOfCar.add_elip(xCar_ct-7, yCar_ct-2, (yCar_ct-2 - (yCar_ct-4))*2, yCar_ct-2 - (yCar_ct-4) - 1);
-	//draw shape of car w blue_color
+	red_shapeOfCar.add_elip(xCar_ct - 7, yCar_ct - 2, (yCar_ct - 2 - (yCar_ct - 4)) * 2, yCar_ct - 2 - (yCar_ct - 4) - 1);
+	// draw shape of car w blue_color
 	Shape blue_shapeOfCar;
-	blue_shapeOfCar.add_line(xCar_ct, yCar_ct+1, xCar_ct+3, yCar_ct+3);
-	blue_shapeOfCar.add_line(xCar_ct-2, yCar_ct-4, -xCar_ct+2, yCar_ct-4);
-	blue_shapeOfCar.add_rectangle(xCar_ct-4, yCar_ct-7, xCar_ct+4, yCar_ct-9);
+	blue_shapeOfCar.add_line(xCar_ct, yCar_ct + 1, xCar_ct + 3, yCar_ct + 3);
+	blue_shapeOfCar.add_line(xCar_ct - 2, yCar_ct - 4, -xCar_ct + 2, yCar_ct - 4);
+	blue_shapeOfCar.add_rectangle(xCar_ct - 4, yCar_ct - 7, xCar_ct + 4, yCar_ct - 9);
 
 	user_table.draw_shape(gray_shapeOfCar, DARKGRAY);
 	user_table.draw_shape(gray_shapeOfCar.get_symmetry_oy(), DARKGRAY);
@@ -161,9 +156,8 @@ int main()
 	user_table.draw_shape(red_shapeOfCar, RED);
 	user_table.draw_shape(red_shapeOfCar.get_symmetry_oy(), RED);
 	user_table.draw_shape(blue_shapeOfCar, BLUE);
-	
+
 	// =========================================
-	
 
 	int font = 10;
 	Text ctrlPal("CONTROL PANEL");
@@ -257,32 +251,52 @@ int main()
 	cy3D.set_style(font, 3);
 	cy3D.draw_at(new Rectang(200, 400, 90, 228));
 
+	Text xCy("X");
+	xCy.set_style(font, 2);
+	xCy.draw_at(new Rectang(20, 450, 30, 288));
+
+	Rectang rectang_cylinder3d_x(30, 450, 80, 480);
+	rectang_cylinder3d_x.draw();
+
+	Text yCy("Y");
+	yCy.set_style(font, 2);
+	yCy.draw_at(new Rectang(185, 450, 195, 288));
+
+	Rectang rectang_cylinder3d_y(115, 450, 165, 480);
+	rectang_cylinder3d_y.draw();
+
+	Text zCy("Z");
+	zCy.set_style(font, 2);
+	zCy.draw_at(new Rectang(350, 450, 360, 288));
+
+	Rectang rectang_cylinder3d_z(195, 450, 245, 480);
+	rectang_cylinder3d_z.draw();
+
 	Text rCy("R");
 	rCy.set_style(font, 2);
-	rCy.draw_at(new Rectang(100, 450, 90, 288));
-	Rectang rectang_cylinder3d_r(80, 450, 160, 480);
+	rCy.draw_at(new Rectang(30, 500, 40, 288));
+
+	Rectang rectang_cylinder3d_r(40, 500, 120, 530);
 	rectang_cylinder3d_r.draw();
 
 	Text hCy("H");
 	hCy.set_style(font, 2);
-	hCy.draw_at(new Rectang(100, 500, 90, 288));
-	Rectang rectang_cylinder3d_h(80, 500, 160, 530);
+	hCy.draw_at(new Rectang(270, 500, 290, 288));
+
+	Rectang rectang_cylinder3d_h(160, 500, 240, 530);
 	rectang_cylinder3d_h.draw();
 
 	//========== WHILE LOOP DRAW FRAME ==========
 
-	int countFrame = 0; // to setup moving some shape
+	int countFrame = 0;	  // to setup moving some shape
 	int sunUpCount = -10; // to setup moving of the sun
-	
+
 	Pixel mouse_click_pixel; // to setup event when clicking on 3D shape X input
 
-
-	int alpha = 0; // to make change rotate of fan : canh quat
+	int alpha = 0;				 // to make change rotate of fan : canh quat
 	int waterWheelCenterX = -60; // get center of water wheel to make the fan rotated
 	int waterWheelCenterY = -15; // get center of water wheel to make the fan rotated
-	
-	
-	
+
 	while (true) // while loop make change shapes on moving. In this picture, we have : waterwheel, airbarloon, sun is in moving
 	{
 		// ======= We need to clear old frame, and then drawing new frame ===========
@@ -291,48 +305,49 @@ int main()
 
 		// ========== Rotate the water wheel ===========
 		alpha += 10; // update alpha to rotate
-		Point* p1 = Shape::getRotatedPoint(-60,-8, waterWheelCenterX, waterWheelCenterY, alpha);
-		Point* p2 = Shape::getRotatedPoint(-60,-22, waterWheelCenterX, waterWheelCenterY, alpha);
-		Point* p3 = Shape::getRotatedPoint(-50,-15, waterWheelCenterX, waterWheelCenterY, alpha);
-		Point* p4 = Shape::getRotatedPoint(-70,-15, waterWheelCenterX, waterWheelCenterY, alpha);
+		Point *p1 = Shape::getRotatedPoint(-60, -8, waterWheelCenterX, waterWheelCenterY, alpha);
+		Point *p2 = Shape::getRotatedPoint(-60, -22, waterWheelCenterX, waterWheelCenterY, alpha);
+		Point *p3 = Shape::getRotatedPoint(-50, -15, waterWheelCenterX, waterWheelCenterY, alpha);
+		Point *p4 = Shape::getRotatedPoint(-70, -15, waterWheelCenterX, waterWheelCenterY, alpha);
 		Shape sRotate; // the fan : canh quat
-		sRotate.add_line(waterWheelCenterX, waterWheelCenterY, p1->x,p1->y);
-		sRotate.add_line(waterWheelCenterX, waterWheelCenterY, p2->x,p2->y);
-		sRotate.add_line(waterWheelCenterX, waterWheelCenterY, p3->x,p3->y);
-		sRotate.add_line(waterWheelCenterX, waterWheelCenterY, p4->x,p4->y);
+		sRotate.add_line(waterWheelCenterX, waterWheelCenterY, p1->x, p1->y);
+		sRotate.add_line(waterWheelCenterX, waterWheelCenterY, p2->x, p2->y);
+		sRotate.add_line(waterWheelCenterX, waterWheelCenterY, p3->x, p3->y);
+		sRotate.add_line(waterWheelCenterX, waterWheelCenterY, p4->x, p4->y);
 		sRotate.add_line(p1->x, p1->y, p3->x, p3->y);
 		sRotate.add_line(p1->x, p1->y, p4->x, p4->y);
 		sRotate.add_line(p2->x, p2->y, p3->x, p3->y);
 		sRotate.add_line(p2->x, p2->y, p4->x, p4->y);
 		user_table.draw_shape(waterWheel, BLUE); // the water wheel that we want it to be back of the fan, we draw it first
-		user_table.draw_shape(sRotate, CYAN); // Then we draw the fan. After updating rotated fan, we draw it
+		user_table.draw_shape(sRotate, CYAN);	 // Then we draw the fan. After updating rotated fan, we draw it
 		//=========================================================================
 
 		// ============ 2->3->4->1 : draw,  delay, clear, update ==================
-		
-		
+
 		//  Bcz we have (waterwheel + fan , airbarloon, sun)  in frame to move,
 		//  and we had drawn the Fan+waterwheel above, now we need to draw the rest
 		user_table.draw_shape(mountain_shape, DARKGRAY);
 		user_table.draw_shape(mountain_shape.get_symmetry_oy(), DARKGRAY);
-	
+
 		// after drawing all thing need to change move, we delay current frame
 		delay(1);
-		
+
 		// after delaying, we clear shapes and then update
-		
+
 		// clear objects
 		user_table.clear_shape(sRotate);
 		user_table.clear_shape(theSun);
 		user_table.clear_shape(hotAirBalloonShape);
-		
 
 		// udpate the sun
-		if (countFrame % 5 == 0){
-			if (sunUpCount < 15){
+		if (countFrame % 5 == 0)
+		{
+			if (sunUpCount < 15)
+			{
 				theSun.move_up();
 			}
-			else{
+			else
+			{
 				theSun.move_down();
 			}
 			sunUpCount++;
@@ -340,22 +355,26 @@ int main()
 		// update and then draw : step 4 to step 1
 		user_table.draw_shape(theSun, LIGHTRED);
 
-
-
 		// update hot airbaloon
-		if (countFrame < 41){
+		if (countFrame < 41)
+		{
 			hotAirBalloonShape.move_right();
-		}else{
+		}
+		else
+		{
 			hotAirBalloonShape.move_left();
 		}
 		// update and then draw : step 4 to step 1
 		user_table.draw_shape(hotAirBalloonShape, LIGHTMAGENTA);
-	
-		if (countFrame == 80){
-			countFrame = 0;
-		}countFrame++;
 
-		if (sunUpCount == 30){
+		if (countFrame == 80)
+		{
+			countFrame = 0;
+		}
+		countFrame++;
+
+		if (sunUpCount == 30)
+		{
 			sunUpCount = 0;
 		}
 
@@ -363,12 +382,12 @@ int main()
 		mouse_click_pixel.mouse_click(); // get event of none click or click. If click, get x,y position of the click
 
 		//========== 3D Rectangle ==========
-		if (mouse_click_pixel.is_in(xRec3D) ) 
+		if (mouse_click_pixel.is_in(xRec3D))
 		{
 			int len0 = 380;
 			int x0 = 895;
 			int y0 = 414;
-			line(x0, y0, x0-len0, y0+len0);
+			line(x0, y0, x0 - len0, y0 + len0);
 			user_table.clear_shape(theSun);
 			user_table.clear_shape(hotAirBalloonShape);
 			user_table.clear_shape(mountain_shape);
@@ -382,7 +401,7 @@ int main()
 			user_table.clear_shape(grass.get_symmetry_oy());
 			user_table.clear_shape(trunks.get_symmetry_oy());
 			user_table.clear_shape(leaves.get_symmetry_oy());
-			
+
 			user_table.clear_shape(gray_shapeOfCar);
 			user_table.clear_shape(gray_shapeOfCar.get_symmetry_oy());
 			user_table.clear_shape(black_shapeOfCar);
@@ -391,7 +410,7 @@ int main()
 			user_table.clear_shape(cyan_shapeOfCar.get_symmetry_oy());
 			user_table.clear_shape(red_shapeOfCar);
 			user_table.clear_shape(red_shapeOfCar.get_symmetry_oy());
-			user_table.clear_shape(blue_shapeOfCar);	
+			user_table.clear_shape(blue_shapeOfCar);
 
 			int len, wid, hei, beginx, beginy, beginz;
 			Text input;
@@ -408,65 +427,63 @@ int main()
 			input.cin_at(length3D);
 			len = input.get_num();
 
-
 			input.cin_at(width3D);
 			wid = input.get_num();
 
 			input.cin_at(height3D);
 			hei = input.get_num();
 
-		
-			vector<Point3D*> points_3d;
+			vector<Point3D *> points_3d;
 
-			points_3d.push_back(new Point3D(beginx, beginy + wid, beginz));				   // A
-			points_3d.push_back(new Point3D(beginx + len, beginy + wid, beginz));		   // B
-			points_3d.push_back(new Point3D(beginx + len, beginy, beginz));				   // C
-			points_3d.push_back(new Point3D(beginx, beginy, beginz));					   // D
-			points_3d.push_back(new Point3D(beginx, beginy + wid, beginz + hei));		   // E
-			points_3d.push_back(new Point3D(beginx + len, beginy + wid, beginz + hei));    // F
-			points_3d.push_back(new Point3D(beginx + len, beginy, beginz + hei));		   // G
-			points_3d.push_back(new Point3D(beginx, beginy, beginz + hei));				   // H
+			points_3d.push_back(new Point3D(beginx, beginy + wid, beginz));				// A
+			points_3d.push_back(new Point3D(beginx + len, beginy + wid, beginz));		// B
+			points_3d.push_back(new Point3D(beginx + len, beginy, beginz));				// C
+			points_3d.push_back(new Point3D(beginx, beginy, beginz));					// D
+			points_3d.push_back(new Point3D(beginx, beginy + wid, beginz + hei));		// E
+			points_3d.push_back(new Point3D(beginx + len, beginy + wid, beginz + hei)); // F
+			points_3d.push_back(new Point3D(beginx + len, beginy, beginz + hei));		// G
+			points_3d.push_back(new Point3D(beginx, beginy, beginz + hei));				// H
 
-			vector<Point*> point_list; // 2d point list
+			vector<Point *> point_list; // 2d point list
 
-			point_list.push_back( get2Dfrom3D(points_3d[0]) ); // A
-			point_list.push_back( get2Dfrom3D(points_3d[1]) ); // B
-			point_list.push_back( get2Dfrom3D(points_3d[2]) );  // C
-			point_list.push_back( get2Dfrom3D(points_3d[3]) );  // D
-			point_list.push_back( get2Dfrom3D(points_3d[4]) );  // E
-			point_list.push_back( get2Dfrom3D(points_3d[5]) );  // F
-			point_list.push_back( get2Dfrom3D(points_3d[6]) );  // G
-			point_list.push_back( get2Dfrom3D(points_3d[7]) );  // H
+			point_list.push_back(get2Dfrom3D(points_3d[0])); // A
+			point_list.push_back(get2Dfrom3D(points_3d[1])); // B
+			point_list.push_back(get2Dfrom3D(points_3d[2])); // C
+			point_list.push_back(get2Dfrom3D(points_3d[3])); // D
+			point_list.push_back(get2Dfrom3D(points_3d[4])); // E
+			point_list.push_back(get2Dfrom3D(points_3d[5])); // F
+			point_list.push_back(get2Dfrom3D(points_3d[6])); // G
+			point_list.push_back(get2Dfrom3D(points_3d[7])); // H
 
 			Shape *shape = new Shape;
 
-			shape->add_line(point_list[0]->x, point_list[0]->y, point_list[1]->x, point_list[1]->y);		 	// AB
-			shape->add_line_net_dut(point_list[2]->x, point_list[2]->y, point_list[3]->x, point_list[3]->y); 	// CD
-			shape->add_line_net_dut(point_list[3]->x, point_list[3]->y, point_list[0]->x, point_list[0]->y); 	// DA
-			shape->add_line(point_list[1]->x, point_list[1]->y, point_list[2]->x, point_list[2]->y);		 	// BC
-			shape->add_line(point_list[4]->x, point_list[4]->y, point_list[5]->x, point_list[5]->y); 			// EF
-			shape->add_line(point_list[5]->x, point_list[5]->y, point_list[6]->x, point_list[6]->y); 			// FG
-			shape->add_line(point_list[6]->x, point_list[6]->y, point_list[7]->x, point_list[7]->y);		 	// GH
-			shape->add_line(point_list[7]->x, point_list[7]->y, point_list[4]->x, point_list[4]->y);		 	// HE
-			shape->add_line(point_list[0]->x, point_list[0]->y, point_list[4]->x, point_list[4]->y);		 	// AE
-			shape->add_line(point_list[1]->x, point_list[1]->y, point_list[5]->x, point_list[5]->y); 			// BF
-			shape->add_line(point_list[2]->x, point_list[2]->y, point_list[6]->x, point_list[6]->y);		 	// CG
-			shape->add_line_net_dut(point_list[3]->x, point_list[3]->y, point_list[7]->x, point_list[7]->y);	// DH
+			shape->add_line(point_list[0]->x, point_list[0]->y, point_list[1]->x, point_list[1]->y);		 // AB
+			shape->add_line_net_dut(point_list[2]->x, point_list[2]->y, point_list[3]->x, point_list[3]->y); // CD
+			shape->add_line_net_dut(point_list[3]->x, point_list[3]->y, point_list[0]->x, point_list[0]->y); // DA
+			shape->add_line(point_list[1]->x, point_list[1]->y, point_list[2]->x, point_list[2]->y);		 // BC
+			shape->add_line(point_list[4]->x, point_list[4]->y, point_list[5]->x, point_list[5]->y);		 // EF
+			shape->add_line(point_list[5]->x, point_list[5]->y, point_list[6]->x, point_list[6]->y);		 // FG
+			shape->add_line(point_list[6]->x, point_list[6]->y, point_list[7]->x, point_list[7]->y);		 // GH
+			shape->add_line(point_list[7]->x, point_list[7]->y, point_list[4]->x, point_list[4]->y);		 // HE
+			shape->add_line(point_list[0]->x, point_list[0]->y, point_list[4]->x, point_list[4]->y);		 // AE
+			shape->add_line(point_list[1]->x, point_list[1]->y, point_list[5]->x, point_list[5]->y);		 // BF
+			shape->add_line(point_list[2]->x, point_list[2]->y, point_list[6]->x, point_list[6]->y);		 // CG
+			shape->add_line_net_dut(point_list[3]->x, point_list[3]->y, point_list[7]->x, point_list[7]->y); // DH
 
 			user_table.draw_shape(shape, CYAN);
 
 			getch(); // = get character = the while loop inside, get the key of keyboard user type
 			user_table.clear_shape(shape);
 			user_table.draw_shape(grass, LIGHTGREEN);
-			user_table.draw_shape(grass.get_symmetry_oy(), LIGHTGREEN); 
+			user_table.draw_shape(grass.get_symmetry_oy(), LIGHTGREEN);
 			user_table.draw_shape(waterWheel, MAGENTA);
 			user_table.draw_shape(theHouse, RED);
 			user_table.draw_shape(houseFurnitures, LIGHTBLUE);
 			user_table.draw_shape(trunks, BROWN);
-			user_table.draw_shape(leaves, GREEN);	
+			user_table.draw_shape(leaves, GREEN);
 			user_table.draw_shape(trunks.get_symmetry_oy(), BROWN);
-			user_table.draw_shape(leaves.get_symmetry_oy(), GREEN);	
-		
+			user_table.draw_shape(leaves.get_symmetry_oy(), GREEN);
+
 			Pencil::reDraw(xRec3D);
 			Pencil::reDraw(yRec3D);
 			Pencil::reDraw(zRec3D);
@@ -475,13 +492,13 @@ int main()
 			Pencil::reDraw(height3D);
 			int curColor = getcolor();
 			setcolor(WHITE);
-			line(x0, y0, x0-len0, y0+len0);
+			line(x0, y0, x0 - len0, y0 + len0);
 			setcolor(curColor);
 			UserTable u;
 		}
 
 		//========== 3D Cylinder ==========
-		if (mouse_click_pixel.is_in(rectang_cylinder3d_r))
+		if (mouse_click_pixel.is_in(rectang_cylinder3d_x))
 		{
 			int len0 = 380;
 			int x0 = 895;
@@ -512,9 +529,18 @@ int main()
 			user_table.clear_shape(red_shapeOfCar.get_symmetry_oy());
 			user_table.clear_shape(blue_shapeOfCar);
 
-			int r, h;
+			int centerX, centerY, centerZ, r, h;
 
 			Text input;
+
+			input.cin_at(rectang_cylinder3d_x);
+			centerX = input.get_num();
+
+			input.cin_at(rectang_cylinder3d_y);
+			centerY = input.get_num();
+
+			input.cin_at(rectang_cylinder3d_z);
+			centerZ = input.get_num();
 
 			input.cin_at(rectang_cylinder3d_r);
 			r = input.get_num();
@@ -522,25 +548,69 @@ int main()
 			input.cin_at(rectang_cylinder3d_h);
 			h = input.get_num();
 
+			vector<Point3D *> point_3d;
+			point_3d.push_back(new Point3D(centerX, centerY, centerZ));			// bottom center
+			point_3d.push_back(new Point3D(centerX, centerY, centerZ + h));		// top center
+			point_3d.push_back(new Point3D(centerX - r, centerY, centerZ));		// bottom left
+			point_3d.push_back(new Point3D(centerX - r, centerY, centerZ + h)); // top left
+			point_3d.push_back(new Point3D(centerX + r, centerY, centerZ));		// bottom right
+			point_3d.push_back(new Point3D(centerX + r, centerY, centerZ + h)); // top right
+			point_3d.push_back(new Point3D(centerX, centerY + r, centerZ));		// front below center
+			point_3d.push_back(new Point3D(centerX, centerY - r, centerZ));		// behind below center
+			point_3d.push_back(new Point3D(centerX, centerY + r, centerZ + h)); // front above center
+			point_3d.push_back(new Point3D(centerX, centerY - r, centerZ + h)); // behind above center
+
 			vector<Point *> point_list;
 
-			point_list.push_back(new Point(0, 0));
-			point_list.push_back(new Point(0, h));
-			point_list.push_back(new Point(-r, 0));
-			point_list.push_back(new Point(-r, h));
-			point_list.push_back(new Point(r, 0));
-			point_list.push_back(new Point(r, h));
+			point_list.push_back(get2Dfrom3D(point_3d[0])); // bottom center
+			point_list.push_back(get2Dfrom3D(point_3d[1])); // top center
+			point_list.push_back(get2Dfrom3D(point_3d[2])); // bottom left
+			point_list.push_back(get2Dfrom3D(point_3d[3])); // top left
+			point_list.push_back(get2Dfrom3D(point_3d[4])); // bottom right
+			point_list.push_back(get2Dfrom3D(point_3d[5])); // top right
+			point_list.push_back(get2Dfrom3D(point_3d[6])); // front below center
+			point_list.push_back(get2Dfrom3D(point_3d[7])); // behind below center
+			point_list.push_back(get2Dfrom3D(point_3d[8])); // front above center
+			point_list.push_back(get2Dfrom3D(point_3d[9])); // behind above center
 
 			Shape *shape = new Shape;
 
-			shape->add_elip(point_list[0]->x, point_list[0]->y, r, r / 2);
-			shape->add_elip(point_list[1]->x, point_list[1]->y, r, r / 2);
-			shape->add_line(point_list[2]->x, point_list[2]->y, point_list[3]->x, point_list[3]->y);
-			shape->add_line(point_list[4]->x, point_list[4]->y, point_list[5]->x, point_list[5]->y);
+			shape->add_elip(point_list[0]->x, point_list[0]->y, abs(point_list[4]->x - point_list[0]->x) + 1, abs(point_list[6]->y - point_list[0]->y));
+			shape->add_elip(point_list[1]->x, point_list[1]->y, abs(point_list[5]->x - point_list[1]->x) + 1, abs(point_list[8]->y - point_list[1]->y));
+			shape->add_line(point_list[3]->x, point_list[3]->y, point_list[2]->x, point_list[2]->y);
+			shape->add_line(point_list[5]->x - 1, point_list[5]->y, point_list[4]->x - 1, point_list[4]->y);
 
 			user_table.draw_shape(shape, CYAN);
-			getch();
+
+			getch(); // = get character = the while loop inside, get the key of keyboard user type
 			user_table.clear_shape(shape);
+			user_table.draw_shape(grass, LIGHTGREEN);
+			user_table.draw_shape(grass.get_symmetry_oy(), LIGHTGREEN);
+			user_table.draw_shape(waterWheel, MAGENTA);
+			user_table.draw_shape(theHouse, RED);
+			user_table.draw_shape(houseFurnitures, LIGHTBLUE);
+			user_table.draw_shape(trunks, BROWN);
+			user_table.draw_shape(leaves, GREEN);
+			user_table.draw_shape(trunks.get_symmetry_oy(), BROWN);
+			user_table.draw_shape(leaves.get_symmetry_oy(), GREEN);
+
+			Pencil::reDraw(xRec3D);
+			Pencil::reDraw(yRec3D);
+			Pencil::reDraw(zRec3D);
+			Pencil::reDraw(length3D);
+			Pencil::reDraw(width3D);
+			Pencil::reDraw(height3D);
+			Pencil::reDraw(rectang_cylinder3d_x);
+			Pencil::reDraw(rectang_cylinder3d_y);
+			Pencil::reDraw(rectang_cylinder3d_z);
+			Pencil::reDraw(rectang_cylinder3d_r);
+			Pencil::reDraw(rectang_cylinder3d_h);
+
+			int curColor = getcolor();
+			setcolor(WHITE);
+			line(x0, y0, x0 - len0, y0 + len0);
+			setcolor(curColor);
+			UserTable u;
 		}
 
 		// ======= write x,y position to frame ===
@@ -552,9 +622,4 @@ int main()
 		Pencil::set_color(BLACK);
 		// ========================================
 	}
-
 }
-
-
-
-
