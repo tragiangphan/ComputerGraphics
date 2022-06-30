@@ -1,5 +1,12 @@
 # COMPUTER GRAPHICS
+
+<div align="center">
+  <img src="https://media.giphy.com/media/LqaYIfwhvzsi6vwBxO/giphy.gif" width="200">
+</div>
+
 ### Computer graphics course project made by C++ programe language and Graphics.h graphics library.
+
+---
 
 #### 👀 PROJECT PREVIEW
 ![Project](https://user-images.githubusercontent.com/85621338/174432716-64085cb2-e416-4938-a108-2a1e2acacec8.gif)
