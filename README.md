@@ -3,6 +3,14 @@
 <div align="center">
   <img src="https://media.giphy.com/media/LqaYIfwhvzsi6vwBxO/giphy.gif" width="200">
 </div>
+<div id="badges" align="center">
+  <a href="#">
+    <img src="https://img.shields.io/badge/%F0%9F%93%91%20Learning-D9534F?logo=learning&logoColor=white&style=for-the-badge" alt="Discord Badge"/>
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/%F0%9F%8F%AB%20School-30475E?logo=school&logoColor=white&style=for-the-badge" alt="Discord Badge"/>
+  </a>
+</div>
 
 ### Computer graphics course project made by C++ programe language and Graphics.h graphics library.
 
